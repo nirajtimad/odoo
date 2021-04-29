@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                <field name="student_name"/>
+                <field name="student_age"/>
+
+                </field>
+            </field>
+        </record>
+
+    <record id="student_search_view" model="ir.ui.view">
+            <field name="name">school.student.search</field>
+            <field name="model">school.student</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="student_name"/>
+                    <filter string="Active" domain="[('state','=','confirm')]" name = "Active"/>
+                    <filter string="Inactive" domain="[('state','=','inactive')]" name = "Inactive"/>
+                    <filter string="Gender" name="gender" domain="[]" context="{'group_by' :'gender'}"/>
+                </search>
+            </field>
+    </record>
+    <record id="student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="groups_id" eval="[(4, ref('student.group_science_stream'))]"/>
+        <field name="arch" type="xml">
+
+            <tree string="Student">
+                    <field name="student_name" widget="handle"/>
+                    <field name="student_number"/>
+                    <field name="student_age"/>
+                    <field name="gender"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="groups_id" eval="[(4, ref('student.group_science_stream'))]"/>
+        <field name="arch" type="xml">
+            <form string="student_data">
+                <header>
+                    <button name="action_confirm" type="object" string="Active" states="inactive" class="oe_highlight" />
+                    <button name="action_done" type="object" string="Inactive" states="confirm" class="oe_highlight" />
+                    <button name="%(student.create_student_wizards)d" string="Create User" type="action" class="oe_highlight" />
+                    <field name="state" widget='statusbar'/>
+                </header>
+                <sheet>
+                <div>
+                    <h1>
+                        <field name="student_number" readonly="1"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="student_name"/>
+                        <field name="student_age"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                    <group>
+                        <field name="gender" widget="radio"/>
+                        <field name="date_of_birth" widget="date"/>
+                    </group>
+                    <group>
+                        <field name="student_course"/>
+                        <field name="stream" />
+                    </group>
+
+                </group>
+                </sheet>
+                <sheet>
+                   <div>
+                    <h2>
+                        Marks
+                    </h2>
+                    </div>
+                    <group>
+                    <group>
+                        <field name="marathi"/>
+                        <field name="hindi"/>
+                        <field name="english"/>
+                        <field name="total"/>
+                    </group>
+                        <group>
+                            <field name="percentage"/>
+                            <field name="grade"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">school.student</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="student_tree"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+   <!-- <menuitem name="student_root" id="student.menu_root"/> -->
+
+    <menuitem id="student_root" name="School" />
+    <menuitem id="student_information" name="Student" groups="student.group_science_stream" parent="student_root"  action="action_student"/>
+</odoo>

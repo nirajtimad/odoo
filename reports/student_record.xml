@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_student">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+
+                    <div class="page">
+                        <br></br>
+                        <br></br>
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-2" style="margin:auto;">
+                            </div>
+                            <center>
+                                <div class="col-xs-8" style="margin:auto">
+                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                        <tr>
+                                            <td width="40%">
+                                                <p style="text-align:center;">
+                                                    <h2><strong><span t-field="o.student_name"/></strong></h2>
+                                                </p>
+                                            </td>
+                                            <td width="60%">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <p style="text-align:right;"><strong>Name: </strong></p>
+                                                            <p style="text-align:right;"><strong>Gender: </strong></p>
+                                                            <p style="text-align:right;"><strong>Student Number: </strong></p>
+                                                            <p style="text-align:right;"><strong>Marathi: </strong></p>
+                                                            <p style="text-align:right;"><strong>Hindi: </strong></p>
+                                                            <p style="text-align:right;"><strong>English: </strong></p>
+<!--                                                            <p style="text-align:right;"><strong>Total: </strong></p>-->
+<!--                                                            <p style="text-align:right;"><strong>Percentage: </strong></p>-->
+<!--                                                            <p style="text-align:right;"><strong>Grade: </strong></p>-->
+                                                        </td>
+                                                        <td>
+                                                            <p style="text-align:left;padding-left:10px;"  t-field="o.student_name"/>
+                                                            <p style="text-align:left;padding-left:10px;" t-field="o.gender"/>
+                                                            <p style="text-align:left;padding-left:10px;" t-field="o.student_number"/>
+                                                            <p style="text-align:left;padding-left:10px;" t-field="o.marathi"/>
+                                                            <p style="text-align:left;padding-left:10px;" t-field="o.hindi"/>
+                                                            <p style="text-align:left;padding-left:10px;" t-field="o.english"/>
+<!--                                                            <p style="text-align:left;padding-left:10px;" t-field="o.total"/>-->
+<!--                                                            <p style="text-align:left;padding-left:10px;" t-field="o.percentage"/>-->
+<!--                                                            <p style="text-align:left;padding-left:10px;" t-field="o.grade"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </center>
+
+                        </div>
+                    </div>
+                </t>
+            </t>
+
+    </template>
+    <template id="report_school_student">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.student_name.lang"/>
+                    <t t-call="student.report_student" t-lang="lang"/>
+                </t>
+            </t>
+    </template>
+
+</odoo>

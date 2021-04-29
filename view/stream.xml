@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="stream_tree" model="ir.ui.view">
+        <field name="name">stream.student.tree</field>
+        <field name="model">stream.student</field>
+        <field name="arch" type="xml">
+
+            <tree string="Student">
+
+                <field name="stream_name"/>
+                <field name="student_name"/>
+                <field name="student_age"/>
+
+
+            </tree>
+        </field>
+
+    </record>
+    <record id="stream_form" model="ir.ui.view">
+        <field name="name">stream.student.form</field>
+        <field name="model">stream.student</field>
+        <field name="arch" type="xml">
+            <form string="stream_data">
+                <header>
+                    <button name="action_confirm" type="object" string="Active" states="inactive" class="oe_highlight" />
+                    <button name="action_done" type="object" string="Inactive" states="confirm" class="oe_highlight" />
+                    <field name="state" widget='statusbar'/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="stream_name"/>
+                         <field name="student_name"/>
+                            <field name="student_age"/>
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+
+    <record id="action_stream" model="ir.actions.act_window">
+        <field name="name">Stream</field>
+        <field name="res_model">stream.student</field>
+        <field name="view_type">form</field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="stream_root" name="Stream"  parent="student.student_root" groups="student.group_science_stream" action="action_stream" />
+   <!-- <menuitem id="stream_information" name="Stream1"  parent="stream_root" action="action_stream"/> -->
+</odoo>

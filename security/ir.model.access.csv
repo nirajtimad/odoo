@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_student_science,student_science_stream,model_school_student,student.group_science_stream,1,1,1,1
+access_school_student_it,student_it_stream,model_school_student,student.group_it_stream,1,1,1,1
+access_school_course_science,course_science_stream,model_student_course,student.group_science_stream,1,1,0,0
+access_school_course_it,course_it_stream,model_student_course,student.group_it_stream,1,0,1,1
+access_school_stream,course_group_stream,model_stream_student,student.group_stream,1,0,1,1

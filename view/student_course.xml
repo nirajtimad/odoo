@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="course_tree" model="ir.ui.view">
+        <field name="name">student.course.tree</field>
+        <field name="model">student.course</field>
+        <field name="arch" type="xml">
+            <tree string="Course">
+
+                    <field name="student_name"/>
+                    <field name="course_name"/>
+                     <field name="stream"/>
+
+            </tree>
+        </field>
+
+    </record>
+    <record id="course_form" model="ir.ui.view">
+        <field name="name">student.course.form</field>
+        <field name="model">student.course</field>
+        <field name="arch" type="xml">
+            <form string="student_data">
+                <header>
+                    <button name="action_confirm" type="object" string="Active" states="inactive" class="oe_highlight" />
+                    <button name="action_done" type="object" string="Inactive" states="confirm" class="oe_highlight" />
+                    <field name="state" widget='statusbar'/>
+                </header>
+                <sheet>
+                <group>
+                    <field name="student_name"/>
+                    <field name="course_name"/>
+                    <field name="course_duration"/>
+                    <field name="stream"/>
+
+                </group>
+                </sheet>
+                <sheet>
+                    <notebook>
+                        <page string="Information">
+                             <field name="stream">
+                                <tree editable="bottom">
+
+                                </tree>
+                        </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+
+    <record id="action_course" model="ir.actions.act_window">
+        <field name="name">Course</field>
+        <field name="res_model">student.course</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="Course_root1" name="School" groups="student.group_it_stream" action="action_course" />
+    <menuitem id="Course_information" name="Course" groups="student.group_it_stream" parent="Course_root1"  action="action_course"/>
+
+</odoo>

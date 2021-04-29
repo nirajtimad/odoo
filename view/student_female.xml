@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="female" name="Student Field">
+        <t t-call="web.html_container">
+            <div class="container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                Age
+                            </td>
+                            <td>
+                                Gender
+                            </td>
+                            <td>
+                                Date Of Birth
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <t t-foreach="students" t-as="student">
+                            <tr>
+                                <td>
+                                  <t t-esc="student.student_name"/>
+                                </td>
+                                <td>
+                                  <t t-esc="student.student_age"/>
+                                </td>
+                                <td>
+                                    <t t-esc="student.gender"/>
+                                </td>
+                                <td>
+                                    <t t-esc="student.date_of_birth"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

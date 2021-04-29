@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="student_page1" name="Student Field">
+        <t t-call="web.html_container">
+            <div class="container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                Student ID
+                            </td>
+                            <td>
+                                Course Name
+                            </td>
+                            <td>
+                                Course Duration
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                           <t t-foreach="courses" t-as="course">
+                            <tr>
+                                <td>
+                                  <t t-esc="course.student_name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="course.course_name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="course.course_duration"/>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+        </t>
+    </template>
+</odoo>
